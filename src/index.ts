@@ -59,36 +59,6 @@ async function initProxyHub(options) {
 
 }
 
-/*
-const pub_addr = 'tcp://127.0.0.1:8800' // publishers send here
-const sub_addr = 'tcp://127.0.0.1:8801' // subscribers receive here
-
-async function publisher(i) {
-	const sock = new zmq.Publisher
-
-	await sock.connect(pub_addr)
-	console.log("Publisher", i, "bound to", pub_addr)
-
-	while (true) { // repeat forever
-		await new Promise(resolve => setTimeout(resolve, Math.floor(500 + Math.random() * 1000))) // random timeout to reduce spam
-		console.log("Publisher", i, "sending msg")
-		await sock.send(["kitty cats", "meeow! it's " + Date.now()])
-	}
-}
-
-async function subscriber(i) {
-	const sock = new zmq.Subscriber
-
-	sock.connect(sub_addr)
-	sock.subscribe("kitty cats")
-	console.log("Subscriber", i, "connected to", sub_addr)
-
-	for await (const [topic, msg] of sock) {
-		console.log("Subscriber", i, "received topic", topic.toString(), "with message", msg.toString())
-	}
-}
-*/
-
 const opt = {
   debug: true,
   xSubPort: 8800,
