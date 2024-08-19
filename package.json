@@ -10,5 +10,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "npm": "^6.14.18",
+    "zeromq": "^6.0.0-beta.6"
+  }
 }

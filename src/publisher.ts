@@ -9,6 +9,7 @@ const pub_addr = 'tcp://127.0.0.1:8800' // publishers send here
 async function publisher(i) {
 
   if (version.startsWith('5')) {
+    // @ts-ignore
 	const sock = zmq.socket("pub")
 
 	await sock.connect(pub_addr)
