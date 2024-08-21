@@ -18,7 +18,7 @@ async function publisher(i) {
 	while (true) { // repeat forever
 		await new Promise(resolve => setTimeout(resolve, Math.floor(500 + Math.random() * 1000))) // random timeout to reduce spam
 		console.log("Publisher", i, "sending msg")
-		await sock.send(["kitty cats", "meeow! it's " + Date.now()])
+		await sock.send(["global-notification", "meeow! it's " + Date.now()])
 	}
   } else {
 	const sock = new zmq.Publisher
@@ -29,7 +29,7 @@ async function publisher(i) {
 	while (true) { // repeat forever
 		await new Promise(resolve => setTimeout(resolve, Math.floor(500 + Math.random() * 1000))) // random timeout to reduce spam
 		console.log("Publisher", i, "sending msg")
-		await sock.send(["kitty cats", "meeow! it's " + Date.now()])
+		await sock.send(["global-notification", "meeow! it's " + Date.now()])
 	}
   }
 }

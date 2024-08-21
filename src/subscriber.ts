@@ -12,7 +12,7 @@ async function subscriber(i) {
     // @ts-ignore
     const sock = zmq.socket('sub');
 	sock.connect(sub_addr)
-	sock.subscribe("kitty cats")
+	sock.subscribe("global-notification")
 	console.log("Subscriber", i, "connected to", sub_addr)
     sock.on("message", (topic, msg)=> {
 		console.log("Subscriber", i, "received topic", topic.toString(), "with message", msg.toString())
@@ -21,7 +21,7 @@ async function subscriber(i) {
 	const sock = new zmq.Subscriber
 
 	sock.connect(sub_addr)
-	sock.subscribe("kitty cats")
+	sock.subscribe("global-notification")
 	console.log("Subscriber", i, "connected to", sub_addr)
 
 	for await (const [topic, msg] of sock) {
