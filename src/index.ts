@@ -6,8 +6,8 @@ import zmqPackageJson from 'zeromq/package.json' assert { type: "json"}
 const version = zmqPackageJson.version
 
 async function initProxyHub(options) {
-  const xSubPort = Number(options.xSubPort) || 8800;
-  const xPubPort = Number(options.xPubPort) || 8801;
+  const xSubPort = Number(options.xSubPort) || 3333;
+  const xPubPort = Number(options.xPubPort) || 3301;
 
   if (version.startsWith('5')) {
     // @ts-ignore
@@ -21,10 +21,10 @@ async function initProxyHub(options) {
     xpub.bindSync(`tcp://*:${xPubPort}`);
 
     // Message pump
-    xsub.on('message', (...args) => xpub.send(args));
+    xsub.on('message', (topic, data) => xpub.send([topic, data]));
 
     // Subscription pump
-    xpub.on('message', data => xsub.send(data));
+    xpub.on('message', (data) => xsub.send(data));
 
     if (options.debug === true) {
       console.info(`zmq-xpub-xsub listening at { xSubPort: ${xSubPort}, xPubPort: ${xPubPort} }`);
@@ -61,8 +61,8 @@ async function initProxyHub(options) {
 
 const opt = {
   debug: true,
-  xSubPort: 8800,
-  xPubPort: 8801,
+  xSubPort: 3333,
+  xPubPort: 3301,
 }
 
 async function main() {

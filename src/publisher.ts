@@ -5,7 +5,7 @@ import zmqPackageJson from 'zeromq/package.json' assert { type: "json"}
 
 const version = zmqPackageJson.version
 
-const pub_addr = 'tcp://127.0.0.1:8800' // publishers send here
+const pub_addr = 'tcp://127.0.0.1:3333' // publishers send here
 async function publisher(i) {
 
   if (version.startsWith('5')) {
@@ -21,7 +21,9 @@ async function publisher(i) {
 		await sock.send(["global-notification", "meeow! it's " + Date.now()])
 	}
   } else {
-	const sock = new zmq.Publisher
+	const sock = new zmq.Publisher({
+        sendHighWaterMark: 10000,
+    })
 
 	await sock.connect(pub_addr)
 	console.log("Publisher", i, "bound to", pub_addr)
