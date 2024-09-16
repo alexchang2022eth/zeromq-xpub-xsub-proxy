@@ -1,7 +1,8 @@
 # zeromq-xpub-xsub-proxy
 
-Test steps:
+Provide a proxy for xpub-xsub mode 
 
-1. npm start
+Test steps:
+1. tsc 
 2. node dist/subscriber.js
 3. node dist/publisher.js
