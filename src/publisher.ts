@@ -19,10 +19,10 @@ async function publisher(i) {
 }
 
 async function main() {
-  Promise.all([
-    publisher('1'),
+//  Promise.all([
+//    publisher('1'),
     publisher('2')
-  ])
+ // ])
 }
 
 main()
